@@ -1,6 +1,6 @@
 ﻿namespace Semester_Project
 {
-    partial class Form1
+    partial class Mutual_Exclusion_Form
     {
         /// <summary>
         /// Required designer variable.
@@ -28,114 +28,115 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.textBox5 = new System.Windows.Forms.TextBox();
-            this.textBox6 = new System.Windows.Forms.TextBox();
-            this.textBox7 = new System.Windows.Forms.TextBox();
-            this.textBox8 = new System.Windows.Forms.TextBox();
-            this.textBox9 = new System.Windows.Forms.TextBox();
-            this.textBox10 = new System.Windows.Forms.TextBox();
-            this.textBox11 = new System.Windows.Forms.TextBox();
-            this.textBox12 = new System.Windows.Forms.TextBox();
+            this.r_box1 = new System.Windows.Forms.TextBox();
+            this.r_box2 = new System.Windows.Forms.TextBox();
+            this.r_box3 = new System.Windows.Forms.TextBox();
+            this.r_box4 = new System.Windows.Forms.TextBox();
+            this.l_box1 = new System.Windows.Forms.TextBox();
+            this.l_box2 = new System.Windows.Forms.TextBox();
+            this.l_box3 = new System.Windows.Forms.TextBox();
+            this.l_box4 = new System.Windows.Forms.TextBox();
+            this.m_box1 = new System.Windows.Forms.TextBox();
+            this.m_box2 = new System.Windows.Forms.TextBox();
+            this.m_box3 = new System.Windows.Forms.TextBox();
+            this.m_box4 = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
+            this.ModeSelect = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
-            // textBox1
+            // r_box1
             // 
-            this.textBox1.Location = new System.Drawing.Point(606, 56);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 20);
-            this.textBox1.TabIndex = 0;
+            this.r_box1.Location = new System.Drawing.Point(606, 56);
+            this.r_box1.Name = "r_box1";
+            this.r_box1.Size = new System.Drawing.Size(100, 20);
+            this.r_box1.TabIndex = 0;
             // 
-            // textBox2
+            // r_box2
             // 
-            this.textBox2.Location = new System.Drawing.Point(606, 83);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(100, 20);
-            this.textBox2.TabIndex = 1;
+            this.r_box2.Location = new System.Drawing.Point(606, 83);
+            this.r_box2.Name = "r_box2";
+            this.r_box2.Size = new System.Drawing.Size(100, 20);
+            this.r_box2.TabIndex = 1;
             // 
-            // textBox3
+            // r_box3
             // 
-            this.textBox3.Location = new System.Drawing.Point(606, 121);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(100, 20);
-            this.textBox3.TabIndex = 2;
+            this.r_box3.Location = new System.Drawing.Point(606, 121);
+            this.r_box3.Name = "r_box3";
+            this.r_box3.Size = new System.Drawing.Size(100, 20);
+            this.r_box3.TabIndex = 2;
             // 
-            // textBox4
+            // r_box4
             // 
-            this.textBox4.Location = new System.Drawing.Point(606, 159);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(100, 20);
-            this.textBox4.TabIndex = 3;
+            this.r_box4.Location = new System.Drawing.Point(606, 159);
+            this.r_box4.Name = "r_box4";
+            this.r_box4.Size = new System.Drawing.Size(100, 20);
+            this.r_box4.TabIndex = 3;
             // 
-            // textBox5
+            // l_box1
             // 
-            this.textBox5.Location = new System.Drawing.Point(60, 55);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(100, 20);
-            this.textBox5.TabIndex = 4;
+            this.l_box1.Location = new System.Drawing.Point(60, 55);
+            this.l_box1.Name = "l_box1";
+            this.l_box1.Size = new System.Drawing.Size(100, 20);
+            this.l_box1.TabIndex = 4;
             // 
-            // textBox6
+            // l_box2
             // 
-            this.textBox6.Location = new System.Drawing.Point(60, 82);
-            this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(100, 20);
-            this.textBox6.TabIndex = 5;
+            this.l_box2.Location = new System.Drawing.Point(60, 82);
+            this.l_box2.Name = "l_box2";
+            this.l_box2.Size = new System.Drawing.Size(100, 20);
+            this.l_box2.TabIndex = 5;
             // 
-            // textBox7
+            // l_box3
             // 
-            this.textBox7.Location = new System.Drawing.Point(60, 121);
-            this.textBox7.Name = "textBox7";
-            this.textBox7.Size = new System.Drawing.Size(100, 20);
-            this.textBox7.TabIndex = 6;
+            this.l_box3.Location = new System.Drawing.Point(60, 121);
+            this.l_box3.Name = "l_box3";
+            this.l_box3.Size = new System.Drawing.Size(100, 20);
+            this.l_box3.TabIndex = 6;
             // 
-            // textBox8
+            // l_box4
             // 
-            this.textBox8.Location = new System.Drawing.Point(60, 159);
-            this.textBox8.Name = "textBox8";
-            this.textBox8.Size = new System.Drawing.Size(100, 20);
-            this.textBox8.TabIndex = 7;
+            this.l_box4.Location = new System.Drawing.Point(60, 159);
+            this.l_box4.Name = "l_box4";
+            this.l_box4.Size = new System.Drawing.Size(100, 20);
+            this.l_box4.TabIndex = 7;
             // 
-            // textBox9
+            // m_box1
             // 
-            this.textBox9.Location = new System.Drawing.Point(338, 55);
-            this.textBox9.Name = "textBox9";
-            this.textBox9.Size = new System.Drawing.Size(100, 20);
-            this.textBox9.TabIndex = 8;
+            this.m_box1.Location = new System.Drawing.Point(338, 55);
+            this.m_box1.Name = "m_box1";
+            this.m_box1.Size = new System.Drawing.Size(100, 20);
+            this.m_box1.TabIndex = 8;
             // 
-            // textBox10
+            // m_box2
             // 
-            this.textBox10.Location = new System.Drawing.Point(338, 82);
-            this.textBox10.Name = "textBox10";
-            this.textBox10.Size = new System.Drawing.Size(100, 20);
-            this.textBox10.TabIndex = 9;
+            this.m_box2.Location = new System.Drawing.Point(338, 82);
+            this.m_box2.Name = "m_box2";
+            this.m_box2.Size = new System.Drawing.Size(100, 20);
+            this.m_box2.TabIndex = 9;
             // 
-            // textBox11
+            // m_box3
             // 
-            this.textBox11.Location = new System.Drawing.Point(338, 109);
-            this.textBox11.Name = "textBox11";
-            this.textBox11.Size = new System.Drawing.Size(100, 20);
-            this.textBox11.TabIndex = 10;
+            this.m_box3.Location = new System.Drawing.Point(338, 109);
+            this.m_box3.Name = "m_box3";
+            this.m_box3.Size = new System.Drawing.Size(100, 20);
+            this.m_box3.TabIndex = 10;
             // 
-            // textBox12
+            // m_box4
             // 
-            this.textBox12.Location = new System.Drawing.Point(338, 136);
-            this.textBox12.Name = "textBox12";
-            this.textBox12.Size = new System.Drawing.Size(100, 20);
-            this.textBox12.TabIndex = 11;
+            this.m_box4.Location = new System.Drawing.Point(338, 136);
+            this.m_box4.Name = "m_box4";
+            this.m_box4.Size = new System.Drawing.Size(100, 20);
+            this.m_box4.TabIndex = 11;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 143);
+            this.label1.Location = new System.Drawing.Point(12, 182);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(82, 13);
             this.label1.TabIndex = 12;
@@ -163,7 +164,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(670, 109);
+            this.label4.Location = new System.Drawing.Point(658, 182);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(102, 13);
             this.label4.TabIndex = 15;
@@ -187,30 +188,43 @@
             this.label6.TabIndex = 17;
             this.label6.Text = "> direction zone";
             // 
-            // Form1
+            // ModeSelect
+            // 
+            this.ModeSelect.FormattingEnabled = true;
+            this.ModeSelect.Items.AddRange(new object[] {
+            "Mode 1",
+            "Mode 2"});
+            this.ModeSelect.Location = new System.Drawing.Point(91, 234);
+            this.ModeSelect.Name = "ModeSelect";
+            this.ModeSelect.Size = new System.Drawing.Size(121, 21);
+            this.ModeSelect.TabIndex = 18;
+            this.ModeSelect.Text = "Mode 1";
+            // 
+            // Mutual_Exclusion_Form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(804, 400);
+            this.ClientSize = new System.Drawing.Size(804, 271);
+            this.Controls.Add(this.ModeSelect);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.textBox12);
-            this.Controls.Add(this.textBox11);
-            this.Controls.Add(this.textBox10);
-            this.Controls.Add(this.textBox9);
-            this.Controls.Add(this.textBox8);
-            this.Controls.Add(this.textBox7);
-            this.Controls.Add(this.textBox6);
-            this.Controls.Add(this.textBox5);
-            this.Controls.Add(this.textBox4);
-            this.Controls.Add(this.textBox3);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.textBox1);
-            this.Name = "Form1";
+            this.Controls.Add(this.m_box4);
+            this.Controls.Add(this.m_box3);
+            this.Controls.Add(this.m_box2);
+            this.Controls.Add(this.m_box1);
+            this.Controls.Add(this.l_box4);
+            this.Controls.Add(this.l_box3);
+            this.Controls.Add(this.l_box2);
+            this.Controls.Add(this.l_box1);
+            this.Controls.Add(this.r_box4);
+            this.Controls.Add(this.r_box3);
+            this.Controls.Add(this.r_box2);
+            this.Controls.Add(this.r_box1);
+            this.Name = "Mutual_Exclusion_Form";
             this.Text = "Mutual Exclusion";
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -219,24 +233,25 @@
 
         #endregion
 
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.TextBox textBox4;
-        private System.Windows.Forms.TextBox textBox5;
-        private System.Windows.Forms.TextBox textBox6;
-        private System.Windows.Forms.TextBox textBox7;
-        private System.Windows.Forms.TextBox textBox8;
-        private System.Windows.Forms.TextBox textBox9;
-        private System.Windows.Forms.TextBox textBox10;
-        private System.Windows.Forms.TextBox textBox11;
-        private System.Windows.Forms.TextBox textBox12;
+        private System.Windows.Forms.TextBox r_box1;
+        private System.Windows.Forms.TextBox r_box2;
+        private System.Windows.Forms.TextBox r_box3;
+        private System.Windows.Forms.TextBox r_box4;
+        private System.Windows.Forms.TextBox l_box1;
+        private System.Windows.Forms.TextBox l_box2;
+        private System.Windows.Forms.TextBox l_box3;
+        private System.Windows.Forms.TextBox l_box4;
+        private System.Windows.Forms.TextBox m_box1;
+        private System.Windows.Forms.TextBox m_box2;
+        private System.Windows.Forms.TextBox m_box3;
+        private System.Windows.Forms.TextBox m_box4;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.ComboBox ModeSelect;
     }
 }
 

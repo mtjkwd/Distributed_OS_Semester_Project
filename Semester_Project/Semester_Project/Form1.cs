@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace Semester_Project
 {
-    public partial class Form1 : Form
+    public partial class Mutual_Exclusion_Form : Form
     {
-        public Form1()
+        public Mutual_Exclusion_Form()
         {
             InitializeComponent();
         }

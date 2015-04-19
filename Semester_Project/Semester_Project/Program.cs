@@ -16,16 +16,23 @@ namespace Semester_Project
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            Application.Run(new Mutual_Exclusion_Form());
         }
     }
     
     public class MutexHandler
     {
+        // class variables //
+        private List<string> lHandles; // Handles nodes on left side
+        private List<string> mHandles; // Handles middle in-transit nodes
+        private List<string> rHandles; // Handles nodes on right side
+
+        // class constructor //
         public MutexHandler(bool case1)
         {
             // if true, then use case 1 operation //
             // Ricart & Agrawalas mutual exclusion algorithm, one person on bridge at a time.  Everyone eventually allowed to cross (via queue) //
+            populateHandles(); // Create handles data structure, needed for all operational cases //
             if (case1)
             {
 
@@ -36,10 +43,19 @@ namespace Semester_Project
 
             }
         }
+
+        private void populateHandles()
+        {
+
+        }
+
+        // class functions
         private bool resetGUI()
         {
             // Resets the GUI interface to run another instance when options change via user GUI input //
             return false;
         }
+
+        
     }
 }
