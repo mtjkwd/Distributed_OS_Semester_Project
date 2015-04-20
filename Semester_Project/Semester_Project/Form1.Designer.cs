@@ -51,28 +51,28 @@
             // 
             // r_box1
             // 
-            this.r_box1.Location = new System.Drawing.Point(606, 56);
+            this.r_box1.Location = new System.Drawing.Point(606, 55);
             this.r_box1.Name = "r_box1";
             this.r_box1.Size = new System.Drawing.Size(100, 20);
             this.r_box1.TabIndex = 0;
             // 
             // r_box2
             // 
-            this.r_box2.Location = new System.Drawing.Point(606, 83);
+            this.r_box2.Location = new System.Drawing.Point(606, 81);
             this.r_box2.Name = "r_box2";
             this.r_box2.Size = new System.Drawing.Size(100, 20);
             this.r_box2.TabIndex = 1;
             // 
             // r_box3
             // 
-            this.r_box3.Location = new System.Drawing.Point(606, 121);
+            this.r_box3.Location = new System.Drawing.Point(606, 107);
             this.r_box3.Name = "r_box3";
             this.r_box3.Size = new System.Drawing.Size(100, 20);
             this.r_box3.TabIndex = 2;
             // 
             // r_box4
             // 
-            this.r_box4.Location = new System.Drawing.Point(606, 159);
+            this.r_box4.Location = new System.Drawing.Point(606, 133);
             this.r_box4.Name = "r_box4";
             this.r_box4.Size = new System.Drawing.Size(100, 20);
             this.r_box4.TabIndex = 3;
@@ -86,21 +86,21 @@
             // 
             // l_box2
             // 
-            this.l_box2.Location = new System.Drawing.Point(60, 82);
+            this.l_box2.Location = new System.Drawing.Point(60, 81);
             this.l_box2.Name = "l_box2";
             this.l_box2.Size = new System.Drawing.Size(100, 20);
             this.l_box2.TabIndex = 5;
             // 
             // l_box3
             // 
-            this.l_box3.Location = new System.Drawing.Point(60, 121);
+            this.l_box3.Location = new System.Drawing.Point(60, 107);
             this.l_box3.Name = "l_box3";
             this.l_box3.Size = new System.Drawing.Size(100, 20);
             this.l_box3.TabIndex = 6;
             // 
             // l_box4
             // 
-            this.l_box4.Location = new System.Drawing.Point(60, 159);
+            this.l_box4.Location = new System.Drawing.Point(60, 133);
             this.l_box4.Name = "l_box4";
             this.l_box4.Size = new System.Drawing.Size(100, 20);
             this.l_box4.TabIndex = 7;
@@ -114,21 +114,21 @@
             // 
             // m_box2
             // 
-            this.m_box2.Location = new System.Drawing.Point(338, 82);
+            this.m_box2.Location = new System.Drawing.Point(338, 81);
             this.m_box2.Name = "m_box2";
             this.m_box2.Size = new System.Drawing.Size(100, 20);
             this.m_box2.TabIndex = 9;
             // 
             // m_box3
             // 
-            this.m_box3.Location = new System.Drawing.Point(338, 109);
+            this.m_box3.Location = new System.Drawing.Point(338, 107);
             this.m_box3.Name = "m_box3";
             this.m_box3.Size = new System.Drawing.Size(100, 20);
             this.m_box3.TabIndex = 10;
             // 
             // m_box4
             // 
-            this.m_box4.Location = new System.Drawing.Point(338, 136);
+            this.m_box4.Location = new System.Drawing.Point(338, 133);
             this.m_box4.Name = "m_box4";
             this.m_box4.Size = new System.Drawing.Size(100, 20);
             this.m_box4.TabIndex = 11;
@@ -136,7 +136,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 182);
+            this.label1.Location = new System.Drawing.Point(12, 165);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(82, 13);
             this.label1.TabIndex = 12;
@@ -146,7 +146,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(155, 202);
+            this.label2.Location = new System.Drawing.Point(207, 165);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(82, 13);
             this.label2.TabIndex = 13;
@@ -155,7 +155,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(484, 202);
+            this.label3.Location = new System.Drawing.Point(487, 179);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(82, 13);
             this.label3.TabIndex = 14;
@@ -164,7 +164,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(658, 182);
+            this.label4.Location = new System.Drawing.Point(655, 165);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(102, 13);
             this.label4.TabIndex = 15;
@@ -199,6 +199,7 @@
             this.ModeSelect.Size = new System.Drawing.Size(121, 21);
             this.ModeSelect.TabIndex = 18;
             this.ModeSelect.Text = "Mode 1";
+            this.ModeSelect.SelectedValueChanged += new System.EventHandler(this.ModeSelect_ValueUpdate);
             // 
             // Mutual_Exclusion_Form
             // 

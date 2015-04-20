@@ -21,5 +21,12 @@ namespace Semester_Project
         {
 
         }
+
+        private void ModeSelect_ValueUpdate(object sender, EventArgs e)
+        {
+            // Event Handler runs when the program execution variable changes //
+            // Class must be re-initilized to handle this new case //
+
+        }
     }
 }
