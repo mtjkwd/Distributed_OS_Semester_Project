@@ -35,21 +35,26 @@ namespace Semester_Project
             // Ricart & Agrawalas mutual exclusion algorithm, one person on bridge at a time.  Everyone eventually allowed to cross (via queue) //
             parentForm = form;
             populateHandles(case1); // Create handles data structure, needed for all operational cases //
+            // Common init code between case 1 and case 2 //
+            TextBox l_box1 = parentForm.Controls["l_box1"] as TextBox;
+            l_box1.Text = "Task 1";
+            TextBox l_box2 = parentForm.Controls["l_box2"] as TextBox;
+            l_box2.Text = "Task 2";
+            TextBox r_box1 = parentForm.Controls["r_box1"] as TextBox;
+            r_box1.Text = "Task 3";
+            TextBox r_box2 = parentForm.Controls["r_box2"] as TextBox;
+            r_box2.Text = "Task 4";
+            // Specific case code execution //
             if (case1)
             {
-                
-                TextBox l_box1 = parentForm.Controls["l_box1"] as TextBox;
-                l_box1.Text = "Task 1";
-                TextBox l_box2 = parentForm.Controls["l_box2"] as TextBox;
-                l_box2.Text = "Task 2";
-                TextBox r_box1 = parentForm.Controls["r_box1"] as TextBox;
-                r_box1.Text = "Task 3";
-                TextBox r_box2 = parentForm.Controls["r_box2"] as TextBox;
-                r_box2.Text = "Task 4";
+                // FOR CASE 1 -> EXECUTE MUTUAL EXCLUSION ALGORITHM //
+
             }
             // if false, design protocol 2 states that bridge crossings allowed directionally in sync, but no job indefinately prevented from crossing
             else
             {
+                // FOR CASE 2 -> EXECUTE MUTUAL EXCLUSION ALGORITHM //
+
 
             }
         }

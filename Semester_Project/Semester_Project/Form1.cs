@@ -37,7 +37,10 @@ namespace Semester_Project
             }
             else if (ModeSelect.Text == "Mode 2")
             {
-                currentHandler.resetGUI();
+                if (currentHandler != null)
+                {
+                    currentHandler.resetGUI();
+                }
             }
         }
     }
