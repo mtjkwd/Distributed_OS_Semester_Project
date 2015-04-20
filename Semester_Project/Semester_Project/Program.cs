@@ -20,28 +20,31 @@ namespace Semester_Project
         }
     }
     
-    public class MutexHandler : Mutual_Exclusion_Form
+    public class MutexHandler
     {
         // class variables //
         private List<string> lHandles; // Handles nodes on left side
         private List<string> mHandles; // Handles middle in-transit nodes
         private List<string> rHandles; // Handles nodes on right side
+        private Form parentForm;
 
         // class constructor //
-        public MutexHandler(bool case1)
+        public MutexHandler(bool case1, Mutual_Exclusion_Form form)
         {
             // if true, then use case 1 operation //
             // Ricart & Agrawalas mutual exclusion algorithm, one person on bridge at a time.  Everyone eventually allowed to cross (via queue) //
+            parentForm = form;
             populateHandles(case1); // Create handles data structure, needed for all operational cases //
             if (case1)
             {
-                TextBox l_box1 = this.Controls["l_box1"] as TextBox;
+                
+                TextBox l_box1 = parentForm.Controls["l_box1"] as TextBox;
                 l_box1.Text = "Task 1";
-                TextBox l_box2 = this.Controls["l_box2"] as TextBox;
+                TextBox l_box2 = parentForm.Controls["l_box2"] as TextBox;
                 l_box2.Text = "Task 2";
-                TextBox r_box1 = this.Controls["r_box1"] as TextBox;
+                TextBox r_box1 = parentForm.Controls["r_box1"] as TextBox;
                 r_box1.Text = "Task 3";
-                TextBox r_box2 = this.Controls["r_box2"] as TextBox;
+                TextBox r_box2 = parentForm.Controls["r_box2"] as TextBox;
                 r_box2.Text = "Task 4";
             }
             // if false, design protocol 2 states that bridge crossings allowed directionally in sync, but no job indefinately prevented from crossing
@@ -90,21 +93,21 @@ namespace Semester_Project
         }
 
         // class functions
-        private void resetGUI()
+        public void resetGUI() // public for testing, should set back to private when finished. //
         {
             foreach (string item in lHandles)
             {
-                TextBox itemBox = this.Controls[item.ToString()] as TextBox;
+                TextBox itemBox = parentForm.Controls[item.ToString()] as TextBox;
                 itemBox.Text = string.Empty;
             }
             foreach (string item in mHandles)
             {
-                TextBox itemBox = this.Controls[item.ToString()] as TextBox;
+                TextBox itemBox = parentForm.Controls[item.ToString()] as TextBox;
                 itemBox.Text = string.Empty;
             }
             foreach (string item in rHandles)
             {
-                TextBox itemBox = this.Controls[item.ToString()] as TextBox;
+                TextBox itemBox = parentForm.Controls[item.ToString()] as TextBox;
                 itemBox.Text = string.Empty;
             }
             // Resets the GUI interface to run another instance when options change via user GUI input //

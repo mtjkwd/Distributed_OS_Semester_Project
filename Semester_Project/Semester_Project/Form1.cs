@@ -12,6 +12,11 @@ namespace Semester_Project
 {
     public partial class Mutual_Exclusion_Form : Form
     {
+        // private variables for the form class exclusively //
+        // Note that the MutexHandler class inherets this class //
+
+        private MutexHandler currentHandler;
+
         public Mutual_Exclusion_Form()
         {
             InitializeComponent();
@@ -26,7 +31,14 @@ namespace Semester_Project
         {
             // Event Handler runs when the program execution variable changes //
             // Class must be re-initilized to handle this new case //
-
+            if (ModeSelect.Text == "Mode 1")
+            {
+                currentHandler = new MutexHandler(true, this);
+            }
+            else if (ModeSelect.Text == "Mode 2")
+            {
+                currentHandler.resetGUI();
+            }
         }
     }
 }
