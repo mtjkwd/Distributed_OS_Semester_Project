@@ -61,6 +61,12 @@ namespace Semester_Project
             populateHandles(case1); // Create handles data structure, needed for all operational cases //
             this.setInitialData(); // Sets inital thread data in the shared memory //
             // Common init code between case 1 and case 2 //
+            parentForm.rInsert(Color.Red);
+            parentForm.rInsert(Color.Red);
+            parentForm.lInsert(Color.Blue);
+            parentForm.lInsert(Color.Blue);
+            
+            /*
             TextBox l_box1 = parentForm.Controls["l_box1"] as TextBox;
             l_box1.BackColor = Color.Blue;
             TextBox l_box2 = parentForm.Controls["l_box2"] as TextBox;
@@ -69,6 +75,7 @@ namespace Semester_Project
             r_box1.BackColor = Color.Red;
             TextBox r_box2 = parentForm.Controls["r_box4"] as TextBox;
             r_box2.BackColor = Color.Red;
+             */
             // Specific case code execution //
             if (case1)
             {
@@ -144,7 +151,7 @@ namespace Semester_Project
                 {
                     if (!info.CS)
                     {
-                        if (info.request && (DateTime.Compare(info.timeStamp, sharedMemory[seqNr].timeStamp) < 0)) // t1 is earlier than t2 //
+                        if ((DateTime.Compare(info.timeStamp, sharedMemory[seqNr].timeStamp) < 0)) // t1 is earlier than t2 //
                         {
                             return false;
                         }
@@ -233,10 +240,35 @@ namespace Semester_Project
                         case "L":
                             Color col = parentForm.rShift();
                             parentForm.iMiddle(col);
+                            
+                            Thread.Sleep(parentForm.getSliderValue());
+                            
+                            Color colT = parentForm.rMiddle();
+                            parentForm.lInsert(colT);
+
+                            if (sharedMemoryLock.WaitOne())
+                            {
+                                sharedMemory[myThreadNr].CS = false;
+                                sharedMemory[myThreadNr].direction = "R";
+                                sharedMemoryLock.ReleaseMutex();
+                            }
+
                             break;
                         case "R":
                             Color col2 = parentForm.lShift();
                             parentForm.iMiddle(col2);
+
+                            Thread.Sleep(parentForm.getSliderValue());
+
+                            Color colT2 = parentForm.rMiddle();
+                            parentForm.rInsert(colT2);
+                            
+                            if (sharedMemoryLock.WaitOne())
+                            {
+                                sharedMemory[myThreadNr].CS = false;
+                                sharedMemory[myThreadNr].direction = "L";
+                                sharedMemoryLock.ReleaseMutex();
+                            }
                             break;
                     }
                 }

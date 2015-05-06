@@ -188,7 +188,8 @@ namespace Semester_Project
 
             Action action = () => m_box1.BackColor = Color.White;
             this.Invoke(action, null);
-            
+
+            mValue--;
             return topColor;
         }
 
