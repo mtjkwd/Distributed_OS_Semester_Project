@@ -22,7 +22,7 @@ namespace Semester_Project
         }
     }
 
-    public struct BridgeInfo
+    public class BridgeInfo
     {
         public BridgeInfo(bool RequestA, bool CSA, DateTime timeStampA, string directionA, int threadNrA)
         {
@@ -183,6 +183,8 @@ namespace Semester_Project
                     // Have critical section to shared memory, set shared memory for bridge lock, then release Mutex and give other threads opportunity to respond //
                     sharedMemory[myThreadNr].request = true;
                     sharedMemory[myThreadNr].timeStamp = DateTime.Now;
+                    sharedMemoryLock.ReleaseMutex();
+                    
                 }
                 
             }
