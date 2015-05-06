@@ -24,17 +24,19 @@ namespace Semester_Project
 
     public struct BridgeInfo
     {
-        public BridgeInfo(bool RequestA, bool CSA, DateTime timeStampA, string directionA)
+        public BridgeInfo(bool RequestA, bool CSA, DateTime timeStampA, string directionA, int threadNrA)
         {
             request = RequestA;
             CS = CSA;
             timeStamp = timeStampA;
             direction = directionA;
+            threadNr = threadNrA;
         }
         public bool request;
         public bool CS;
         public DateTime timeStamp;
         public string direction;
+        public int threadNr;
     };
     
     public class MutexHandler
@@ -47,6 +49,7 @@ namespace Semester_Project
 
         private Thread[] workerThreads = new Thread[4];
         private List<BridgeInfo> sharedMemory = new List<BridgeInfo>(); // Shared memory between the processes to help them decide when to enter the bridge //
+        Mutex sharedMemoryLock = new Mutex(false, "sharedMemoryLock");
 
 
         // class constructor //
@@ -124,11 +127,11 @@ namespace Semester_Project
         {
             for (int i = 0; i < 2; i++)
             {
-                sharedMemory.Add(new BridgeInfo(false, false, DateTime.Now, "L"));
+                sharedMemory.Add(new BridgeInfo(false, false, DateTime.Now, "L", i));
             }
             for (int j = 2; j < 4; j++)
             {
-                sharedMemory.Add(new BridgeInfo(false, false, DateTime.Now, "R"));
+                sharedMemory.Add(new BridgeInfo(false, false, DateTime.Now, "R", j));
             }
 
         }
@@ -156,10 +159,10 @@ namespace Semester_Project
 
         public void Richart_Agrawala(Mutual_Exclusion_Form form)
         {
-            workerThreads[0] = new Thread(Richart_Thread);
-            workerThreads[1] = new Thread(Richart_Thread);
-            workerThreads[2] = new Thread(Richart_Thread);
-            workerThreads[3] = new Thread(Richart_Thread);
+            workerThreads[0] = new Thread(() => Richart_Thread(0));
+            workerThreads[1] = new Thread(() => Richart_Thread(1));
+            workerThreads[2] = new Thread(() => Richart_Thread(2));
+            workerThreads[3] = new Thread(() => Richart_Thread(3));
 
             foreach (Thread worker in workerThreads)
             {
@@ -168,10 +171,21 @@ namespace Semester_Project
 
         }
 
-        void Richart_Thread()
+        void Richart_Thread(int number)
         {
             // function code goes here for a thread //
-            
+            int myThreadNr = number;
+            while (true) // infinitely execute unil terminated //
+            {   
+                Thread.Sleep(parentForm.getSliderValue()); // sleeps for ms value indicated on slider (100ms - 500ms range) //
+                if (sharedMemoryLock.WaitOne())
+                {
+                    // Have critical section to shared memory, set shared memory for bridge lock, then release Mutex and give other threads opportunity to respond //
+                    sharedMemory[myThreadNr].request = true;
+                    sharedMemory[myThreadNr].timeStamp = DateTime.Now;
+                }
+                
+            }
         }
         
     }

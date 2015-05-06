@@ -191,5 +191,13 @@ namespace Semester_Project
             
             return topColor;
         }
+
+        public int getSliderValue()
+        {
+            int value = 0;
+            Action getSlider = () => value = SpeedBar.Value;
+            this.Invoke(getSlider, null);
+            return value;
+        }
     }
 }
