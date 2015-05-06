@@ -136,6 +136,28 @@ namespace Semester_Project
 
         }
 
+        private bool enterBridge(int seqNr)
+        {
+            foreach (BridgeInfo info in sharedMemory)
+            {
+                if (info.threadNr != seqNr)
+                {
+                    if (!info.CS)
+                    {
+                        if (info.request && (DateTime.Compare(info.timeStamp, sharedMemory[seqNr].timeStamp) < 0)) // t1 is earlier than t2 //
+                        {
+                            return false;
+                        }
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+            }
+            return true;
+        }
+
         // class functions
         public void resetGUI() // public for testing, should set back to private when finished. //
         {
@@ -180,13 +202,44 @@ namespace Semester_Project
                 Thread.Sleep(parentForm.getSliderValue()); // sleeps for ms value indicated on slider (100ms - 500ms range) //
                 if (sharedMemoryLock.WaitOne())
                 {
+                    if (!sharedMemory[myThreadNr].request)
                     // Have critical section to shared memory, set shared memory for bridge lock, then release Mutex and give other threads opportunity to respond //
                     sharedMemory[myThreadNr].request = true;
                     sharedMemory[myThreadNr].timeStamp = DateTime.Now;
                     sharedMemoryLock.ReleaseMutex();
-                    
+                }
+                // only needed if entering the bridge //
+                bool result = false;
+                string direction = string.Empty;
+                // ^^ only needed if entering the bridge //
+
+                if (sharedMemoryLock.WaitOne())
+                {
+                    result = enterBridge(myThreadNr);
+                    if (result)
+                    {
+                        sharedMemory[myThreadNr].CS = true;
+                        sharedMemory[myThreadNr].request = false;
+                        direction = sharedMemory[myThreadNr].direction;
+                    }
+                    sharedMemoryLock.ReleaseMutex();
                 }
                 
+                // go onto the bridge if true //
+                if (result)
+                {
+                    switch (direction)
+                    {
+                        case "L":
+                            Color col = parentForm.rShift();
+                            parentForm.iMiddle(col);
+                            break;
+                        case "R":
+                            Color col2 = parentForm.lShift();
+                            parentForm.iMiddle(col2);
+                            break;
+                    }
+                }
             }
         }
         
