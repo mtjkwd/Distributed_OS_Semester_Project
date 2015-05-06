@@ -21,6 +21,21 @@ namespace Semester_Project
             Application.Run(new Mutual_Exclusion_Form());
         }
     }
+
+    public struct BridgeInfo
+    {
+        public BridgeInfo(bool RequestA, bool CSA, DateTime timeStampA, string directionA)
+        {
+            request = RequestA;
+            CS = CSA;
+            timeStamp = timeStampA;
+            direction = directionA;
+        }
+        public bool request;
+        public bool CS;
+        public DateTime timeStamp;
+        public string direction;
+    };
     
     public class MutexHandler
     {
@@ -29,9 +44,10 @@ namespace Semester_Project
         private List<string> mHandles; // Handles middle in-transit nodes
         private List<string> rHandles; // Handles nodes on right side
         private Mutual_Exclusion_Form parentForm;
-        private Semaphore bridgeLock_a = new Semaphore(1, 1);
-        private Semaphore bridgeLock_r;
-        private Semaphore bridgeLock_l;
+
+        private Thread[] workerThreads = new Thread[4];
+        private List<BridgeInfo> sharedMemory = new List<BridgeInfo>(); // Shared memory between the processes to help them decide when to enter the bridge //
+
 
         // class constructor //
         public MutexHandler(bool case1, Mutual_Exclusion_Form form)
@@ -40,6 +56,7 @@ namespace Semester_Project
             // Ricart & Agrawalas mutual exclusion algorithm, one person on bridge at a time.  Everyone eventually allowed to cross (via queue) //
             parentForm = form;
             populateHandles(case1); // Create handles data structure, needed for all operational cases //
+            this.setInitialData(); // Sets inital thread data in the shared memory //
             // Common init code between case 1 and case 2 //
             TextBox l_box1 = parentForm.Controls["l_box1"] as TextBox;
             l_box1.BackColor = Color.Blue;
@@ -103,6 +120,19 @@ namespace Semester_Project
             }
         }
 
+        private void setInitialData()
+        {
+            for (int i = 0; i < 2; i++)
+            {
+                sharedMemory.Add(new BridgeInfo(false, false, DateTime.Now, "L"));
+            }
+            for (int j = 2; j < 4; j++)
+            {
+                sharedMemory.Add(new BridgeInfo(false, false, DateTime.Now, "R"));
+            }
+
+        }
+
         // class functions
         public void resetGUI() // public for testing, should set back to private when finished. //
         {
@@ -126,21 +156,19 @@ namespace Semester_Project
 
         public void Richart_Agrawala(Mutual_Exclusion_Form form)
         {
-            
-            Thread[] threads = new Thread[4];
-            threads[0] = new Thread(basic_thread);
-            threads[1] = new Thread(basic_thread);
-            threads[2] = new Thread(basic_thread);
-            threads[3] = new Thread(basic_thread);
+            workerThreads[0] = new Thread(Richart_Thread);
+            workerThreads[1] = new Thread(Richart_Thread);
+            workerThreads[2] = new Thread(Richart_Thread);
+            workerThreads[3] = new Thread(Richart_Thread);
 
-            threads[0].Start();
-            threads[1].Start();
-            threads[2].Start();
-            threads[3].Start();
+            foreach (Thread worker in workerThreads)
+            {
+                worker.Start();
+            }
 
         }
 
-        void basic_thread()
+        void Richart_Thread()
         {
             // function code goes here for a thread //
             
