@@ -66,16 +66,6 @@ namespace Semester_Project
             parentForm.lInsert(Color.Blue);
             parentForm.lInsert(Color.Blue);
             
-            /*
-            TextBox l_box1 = parentForm.Controls["l_box1"] as TextBox;
-            l_box1.BackColor = Color.Blue;
-            TextBox l_box2 = parentForm.Controls["l_box2"] as TextBox;
-            l_box2.BackColor = Color.Blue;
-            TextBox r_box1 = parentForm.Controls["r_box3"] as TextBox;
-            r_box1.BackColor = Color.Red;
-            TextBox r_box2 = parentForm.Controls["r_box4"] as TextBox;
-            r_box2.BackColor = Color.Red;
-             */
             // Specific case code execution //
             if (case1)
             {
@@ -210,10 +200,16 @@ namespace Semester_Project
                 if (sharedMemoryLock.WaitOne())
                 {
                     if (!sharedMemory[myThreadNr].request)
-                    // Have critical section to shared memory, set shared memory for bridge lock, then release Mutex and give other threads opportunity to respond //
-                    sharedMemory[myThreadNr].request = true;
-                    sharedMemory[myThreadNr].timeStamp = DateTime.Now;
-                    sharedMemoryLock.ReleaseMutex();
+                    {
+                        // Have critical section to shared memory, set shared memory for bridge lock, then release Mutex and give other threads opportunity to respond //
+                        sharedMemory[myThreadNr].request = true;
+                        sharedMemory[myThreadNr].timeStamp = DateTime.Now;
+                        sharedMemoryLock.ReleaseMutex();
+                    }
+                    else
+                    {
+                        sharedMemoryLock.ReleaseMutex();
+                    }
                 }
                 // only needed if entering the bridge //
                 bool result = false;
