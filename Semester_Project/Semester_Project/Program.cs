@@ -125,7 +125,7 @@ namespace Semester_Project
 
         public void Richart_Agrawala(Mutual_Exclusion_Form form)
         {
-
+            
             Thread[] threads = new Thread[4];
             threads[0] = new Thread(basic_thread);
             threads[1] = new Thread(basic_thread);
@@ -150,6 +150,7 @@ namespace Semester_Project
             box.Invoke(action, null);
 
             parentForm.lShift();
+            
         }
         
     }

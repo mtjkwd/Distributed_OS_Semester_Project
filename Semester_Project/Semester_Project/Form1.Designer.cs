@@ -47,6 +47,8 @@
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.ModeSelect = new System.Windows.Forms.ComboBox();
+            this.SpeedBar = new System.Windows.Forms.TrackBar();
+            ((System.ComponentModel.ISupportInitialize)(this.SpeedBar)).BeginInit();
             this.SuspendLayout();
             // 
             // r_box1
@@ -201,11 +203,22 @@
             this.ModeSelect.Text = "Mode 1";
             this.ModeSelect.SelectedValueChanged += new System.EventHandler(this.ModeSelect_ValueUpdate);
             // 
+            // SpeedBar
+            // 
+            this.SpeedBar.Location = new System.Drawing.Point(356, 234);
+            this.SpeedBar.Maximum = 500;
+            this.SpeedBar.Minimum = 100;
+            this.SpeedBar.Name = "SpeedBar";
+            this.SpeedBar.Size = new System.Drawing.Size(295, 45);
+            this.SpeedBar.TabIndex = 19;
+            this.SpeedBar.Value = 100;
+            // 
             // Mutual_Exclusion_Form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(804, 271);
+            this.Controls.Add(this.SpeedBar);
             this.Controls.Add(this.ModeSelect);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
@@ -227,6 +240,7 @@
             this.Controls.Add(this.r_box1);
             this.Name = "Mutual_Exclusion_Form";
             this.Text = "Mutual Exclusion";
+            ((System.ComponentModel.ISupportInitialize)(this.SpeedBar)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -253,6 +267,7 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.ComboBox ModeSelect;
+        private System.Windows.Forms.TrackBar SpeedBar;
     }
 }
 
