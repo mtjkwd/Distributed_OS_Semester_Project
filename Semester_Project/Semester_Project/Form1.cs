@@ -52,19 +52,23 @@ namespace Semester_Project
             switch (rValue)
             {
                 case 0:
-                    r_box4.BackColor = iColor;
+                    Action setColor4 = () => r_box4.BackColor = iColor;
+                    this.Invoke(setColor4, null);
                     rValue++;
                     break;
                 case 1:
-                    r_box3.BackColor = iColor;
+                    Action setColor3 = () => r_box3.BackColor = iColor;
+                    this.Invoke(setColor3, null);
                     rValue++;
                     break;
                 case 2:
-                    r_box2.BackColor = iColor;
+                    Action setColor2 = () => r_box2.BackColor = iColor;
+                    this.Invoke(setColor2, null);
                     rValue++;
                     break;
                 case 3:
-                    r_box1.BackColor = iColor;
+                    Action setColor1 = () => r_box1.BackColor = iColor;
+                    this.Invoke(setColor1, null);
                     rValue++;
                     break;
 
@@ -98,19 +102,23 @@ namespace Semester_Project
             switch (lValue)
             {
                 case 0:
-                    l_box1.BackColor = iColor;
+                    Action setColor1 = () => l_box1.BackColor = iColor;
+                    this.Invoke(setColor1, null);
                     lValue++;
                     break;
                 case 1:
-                    l_box2.BackColor = iColor;
+                    Action setColor2 = () => l_box2.BackColor = iColor;
+                    this.Invoke(setColor2, null);
                     lValue++;
                     break;
                 case 2:
-                    l_box3.BackColor = iColor;
+                    Action setColor3 = () => l_box3.BackColor = iColor;
+                    this.Invoke(setColor3, null);
                     lValue++;
                     break;
                 case 3:
-                    l_box4.BackColor = iColor;
+                    Action setColor4 = () => l_box4.BackColor = iColor;
+                    this.Invoke(setColor4, null);
                     lValue++;
                     break;
             }
@@ -143,19 +151,23 @@ namespace Semester_Project
             switch (mValue)
             {
                 case 0:
-                    m_box4.BackColor = iColor;
+                    Action setColor4 = () => m_box4.BackColor = iColor;
+                    this.Invoke(setColor4, null);
                     mValue++;
                     break;
                 case 1:
-                    m_box3.BackColor = iColor;
+                    Action setColor3 = () => m_box3.BackColor = iColor;
+                    this.Invoke(setColor3, null);
                     mValue++;
                     break;
                 case 2:
-                    m_box2.BackColor = iColor;
+                    Action setColor2 = () => m_box2.BackColor = iColor;
+                    this.Invoke(setColor2, null);
                     mValue++;
                     break;
                 case 3:
-                    m_box1.BackColor = iColor;
+                    Action setColor1 = () => m_box1.BackColor = iColor;
+                    this.Invoke(setColor1, null);
                     mValue++;
                     break;
             }
