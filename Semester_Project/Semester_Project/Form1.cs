@@ -43,5 +43,37 @@ namespace Semester_Project
                 }
             }
         }
+        
+        public bool rInsert(Color iColor)
+        {
+            return true;
+        }
+
+        public Color rShift()
+        {
+            // Handles right-side shift / displaying variables depending on //
+            // assumes removal operation is underway //
+            return Color.Red;
+        }
+
+        public Color lShift()
+        {
+            // Handles left-side shift / displaying variables depending on //
+            // assumes removal operation is underway //
+            return Color.Red;
+        }
+
+        public bool iMiddle(Color iColor)
+        {
+            // Inserts value into the top-most part of the middle stack, using the color provided
+            return true;
+        }
+
+        public Color rMiddle()
+        {
+            // removes lowest on the stack from the middle, then re-balances everything depending on the current count //
+            // returns color at the lowest on the stack //
+            return Color.Red;
+        }
     }
 }

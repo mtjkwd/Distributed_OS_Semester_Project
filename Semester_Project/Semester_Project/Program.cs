@@ -27,7 +27,10 @@ namespace Semester_Project
         private List<string> lHandles; // Handles nodes on left side
         private List<string> mHandles; // Handles middle in-transit nodes
         private List<string> rHandles; // Handles nodes on right side
-        private Form parentForm;
+        private Mutual_Exclusion_Form parentForm;
+        private Semaphore bridgeLock_a = new Semaphore(1, 1);
+        private Semaphore bridgeLock_r;
+        private Semaphore bridgeLock_l;
 
         // class constructor //
         public MutexHandler(bool case1, Mutual_Exclusion_Form form)
@@ -49,6 +52,7 @@ namespace Semester_Project
             if (case1)
             {
                 // FOR CASE 1 -> EXECUTE MUTUAL EXCLUSION ALGORITHM //
+                Richart_Agrawala(form);
 
             }
             // if false, design protocol 2 states that bridge crossings allowed directionally in sync, but no job indefinately prevented from crossing
@@ -119,8 +123,34 @@ namespace Semester_Project
             // Resets the GUI interface to run another instance when options change via user GUI input //
         }
 
-        
+        public void Richart_Agrawala(Mutual_Exclusion_Form form)
+        {
 
+            Thread[] threads = new Thread[4];
+            threads[0] = new Thread(basic_thread);
+            threads[1] = new Thread(basic_thread);
+            threads[2] = new Thread(basic_thread);
+            threads[3] = new Thread(basic_thread);
+
+            threads[0].Start();
+            threads[1].Start();
+            threads[2].Start();
+            threads[3].Start();
+
+        }
+
+        void basic_thread()
+        {
+            Control[] boxCtrl = parentForm.Controls.Find("l_box4", true);
+            TextBox box = (TextBox)boxCtrl[0];
+            
+            // sample code to write out to middle control // 
+            // Note: Get the semaphore first to ensure the algorithm works as designed //
+            Action action = () => box.Text = "Haha this actually worked!";
+            box.Invoke(action, null);
+
+            parentForm.lShift();
+        }
         
     }
 }
