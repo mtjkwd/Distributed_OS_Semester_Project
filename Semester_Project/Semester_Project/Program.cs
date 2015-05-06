@@ -80,7 +80,7 @@ namespace Semester_Project
             else
             {
                 // FOR CASE 2 -> EXECUTE MUTUAL EXCLUSION ALGORITHM //
-
+                Multi_Bridge(form);
 
             }
         }
@@ -171,6 +171,20 @@ namespace Semester_Project
 
         }
 
+        public void Multi_Bridge(Mutual_Exclusion_Form form)
+        {
+            workerThreads[0] = new Thread(() => Multi_Thread(0));
+            workerThreads[1] = new Thread(() => Multi_Thread(1));
+            workerThreads[2] = new Thread(() => Multi_Thread(2));
+            workerThreads[3] = new Thread(() => Multi_Thread(3));
+
+            foreach (Thread worker in workerThreads)
+            {
+                worker.Start();
+            }
+
+        }
+
         void Richart_Thread(int number)
         {
             // function code goes here for a thread //
@@ -187,6 +201,25 @@ namespace Semester_Project
                     
                 }
                 
+            }
+        }
+
+        void Multi_Thread(int number)
+        {
+            // function code goes here for a thread //
+            int myThreadNr = number;
+            while (true) // infinitely execute unil terminated //
+            {
+                Thread.Sleep(parentForm.getSliderValue()); // sleeps for ms value indicated on slider (100ms - 500ms range) //
+                if (sharedMemoryLock.WaitOne())
+                {
+                    // Have critical section to shared memory, set shared memory for bridge lock, then release Mutex and give other threads opportunity to respond //
+                    sharedMemory[myThreadNr].request = true;
+                    sharedMemory[myThreadNr].timeStamp = DateTime.Now;
+                    sharedMemoryLock.ReleaseMutex();
+
+                }
+
             }
         }
         
