@@ -179,8 +179,11 @@ namespace Semester_Project
         public void Richart_Agrawala(Mutual_Exclusion_Form form)
         {
             workerThreads[0] = new Thread(() => Richart_Thread(0));
+            Thread.Sleep(10);
             workerThreads[1] = new Thread(() => Richart_Thread(1));
+            Thread.Sleep(15);
             workerThreads[2] = new Thread(() => Richart_Thread(2));
+            Thread.Sleep(18);
             workerThreads[3] = new Thread(() => Richart_Thread(3));
 
             foreach (Thread worker in workerThreads)
