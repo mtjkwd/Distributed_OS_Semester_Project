@@ -77,9 +77,17 @@ namespace Semester_Project
             // Handles right-side shift / displaying variables depending on //
             // assumes removal operation is underway //
             Color topColor = r_box4.BackColor;
-            r_box4.BackColor = r_box3.BackColor;
-            r_box3.BackColor = r_box2.BackColor;
-            r_box1.BackColor = Color.White;
+
+            Action moveBox4 = () => r_box4.BackColor = r_box3.BackColor;
+            this.Invoke(moveBox4, null);
+            Action moveBox3 = () => r_box3.BackColor = r_box2.BackColor;
+            this.Invoke(moveBox3, null);
+            Action moveBox2 = () => r_box2.BackColor = r_box1.BackColor;
+            this.Invoke(moveBox2, null);
+
+            Action action = () => r_box1.BackColor = Color.White;
+            this.Invoke(action, null);
+
             rValue--;
             return topColor;
             
@@ -114,9 +122,17 @@ namespace Semester_Project
             // Handles left-side shift / displaying variables depending on //
             // assumes removal operation is underway //
             Color topColor = l_box1.BackColor;
-            l_box1.BackColor = l_box2.BackColor;
-            l_box2.BackColor = l_box3.BackColor;
-            l_box4.BackColor = Color.White;
+            
+            Action setBox1 = () => l_box1.BackColor = l_box2.BackColor;
+            this.Invoke(setBox1, null);
+            Action setBox2 = () => l_box2.BackColor = l_box3.BackColor;
+            this.Invoke(setBox2, null);
+            Action setBox3 = () => l_box3.BackColor = l_box4.BackColor;
+            this.Invoke(setBox3, null);
+
+            Action action = () => l_box4.BackColor = Color.White;
+            this.Invoke(action, null);
+            
             lValue--;
             return topColor;
         }
@@ -151,10 +167,16 @@ namespace Semester_Project
             // removes lowest on the stack from the middle, then re-balances everything depending on the current count //
             // returns color at the lowest on the stack //
             Color topColor = m_box4.BackColor;
-            m_box4.BackColor = m_box3.BackColor;
-            m_box3.BackColor = m_box2.BackColor;
-            m_box2.BackColor = m_box1.BackColor;
-            m_box1.BackColor = Color.White;
+            Action setBox4 = () => m_box4.BackColor = m_box3.BackColor;
+            this.Invoke(setBox4, null);
+            Action setBox3 = () => m_box3.BackColor = m_box2.BackColor;
+            this.Invoke(setBox3, null);
+            Action setBox2 = () => m_box2.BackColor = m_box1.BackColor;
+            this.Invoke(setBox2, null);
+
+            Action action = () => m_box1.BackColor = Color.White;
+            this.Invoke(action, null);
+            
             return topColor;
         }
     }

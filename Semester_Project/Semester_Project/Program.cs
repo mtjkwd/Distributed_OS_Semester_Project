@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Drawing;
 using System.Threading;
 
 namespace Semester_Project
@@ -41,13 +42,13 @@ namespace Semester_Project
             populateHandles(case1); // Create handles data structure, needed for all operational cases //
             // Common init code between case 1 and case 2 //
             TextBox l_box1 = parentForm.Controls["l_box1"] as TextBox;
-            l_box1.Text = "Task 1";
+            l_box1.BackColor = Color.Blue;
             TextBox l_box2 = parentForm.Controls["l_box2"] as TextBox;
-            l_box2.Text = "Task 2";
-            TextBox r_box1 = parentForm.Controls["r_box1"] as TextBox;
-            r_box1.Text = "Task 3";
-            TextBox r_box2 = parentForm.Controls["r_box2"] as TextBox;
-            r_box2.Text = "Task 4";
+            l_box2.BackColor = Color.Blue;
+            TextBox r_box1 = parentForm.Controls["r_box3"] as TextBox;
+            r_box1.BackColor = Color.Red;
+            TextBox r_box2 = parentForm.Controls["r_box4"] as TextBox;
+            r_box2.BackColor = Color.Red;
             // Specific case code execution //
             if (case1)
             {
@@ -141,15 +142,7 @@ namespace Semester_Project
 
         void basic_thread()
         {
-            Control[] boxCtrl = parentForm.Controls.Find("l_box4", true);
-            TextBox box = (TextBox)boxCtrl[0];
-            
-            // sample code to write out to middle control // 
-            // Note: Get the semaphore first to ensure the algorithm works as designed //
-            Action action = () => box.Text = "Haha this actually worked!";
-            box.Invoke(action, null);
-
-            parentForm.lShift();
+            // function code goes here for a thread //
             
         }
         
