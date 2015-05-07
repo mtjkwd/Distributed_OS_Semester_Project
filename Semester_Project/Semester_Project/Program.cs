@@ -358,13 +358,17 @@ namespace Semester_Project
                     switch (direction)
                     {
                         case "L":
+                            sharedMemoryLock.WaitOne(); // test
                             Color col = parentForm.rShift();
                             parentForm.iMiddle(col);
+                            sharedMemoryLock.ReleaseMutex(); // test
 
                             Thread.Sleep(parentForm.getSliderValue());
 
+                            sharedMemoryLock.WaitOne(); // test
                             Color colT = parentForm.rMiddle();
                             parentForm.lInsert(colT);
+                            sharedMemoryLock.ReleaseMutex(); // test
 
                             if (sharedMemoryLock.WaitOne())
                             {
@@ -375,13 +379,17 @@ namespace Semester_Project
 
                             break;
                         case "R":
+                            sharedMemoryLock.WaitOne(); // test
                             Color col2 = parentForm.lShift();
                             parentForm.iMiddle(col2);
+                            sharedMemoryLock.ReleaseMutex(); // test
 
                             Thread.Sleep(parentForm.getSliderValue());
 
+                            sharedMemoryLock.WaitOne(); // test
                             Color colT2 = parentForm.rMiddle();
                             parentForm.rInsert(colT2);
+                            sharedMemoryLock.ReleaseMutex(); //test
 
                             if (sharedMemoryLock.WaitOne())
                             {
