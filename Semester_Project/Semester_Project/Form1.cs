@@ -36,6 +36,10 @@ namespace Semester_Project
             // Class must be re-initilized to handle this new case //
             if (ModeSelect.Text == "Mode 1")
             {
+                if (currentHandler != null)
+                {
+                    currentHandler.resetGUI();
+                }
                 currentHandler = new MutexHandler(true, this);
             }
             else if (ModeSelect.Text == "Mode 2")
@@ -44,6 +48,7 @@ namespace Semester_Project
                 {
                     currentHandler.resetGUI();
                 }
+                currentHandler = new MutexHandler(false, this);
             }
         }
         

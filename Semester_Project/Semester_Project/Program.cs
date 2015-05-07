@@ -65,7 +65,7 @@ namespace Semester_Project
             parentForm.rInsert(Color.Red);
             parentForm.lInsert(Color.Blue);
             parentForm.lInsert(Color.Blue);
-            
+
             // Specific case code execution //
             if (case1)
             {
@@ -110,13 +110,13 @@ namespace Semester_Project
             if (case1)
             {
                 mHandles.Add("m_box1");
-                mHandles.Add("m_box2");
-                mHandles.Add("m_box3");
-                mHandles.Add("m_box4");
             }
             else
             {
                 mHandles.Add("m_box1");
+                mHandles.Add("m_box2");
+                mHandles.Add("m_box3");
+                mHandles.Add("m_box4");
             }
         }
 
@@ -141,6 +141,32 @@ namespace Semester_Project
                 {
                     if (!info.CS)
                     {
+                        if ((DateTime.Compare(info.timeStamp, sharedMemory[seqNr].timeStamp) < 0)) // t1 is earlier than t2 //
+                        {
+                            return false;
+                        }
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+            }
+            return true;
+        }
+
+        private bool enterBridgeMulti(int seqNr)
+        {
+            foreach (BridgeInfo info in sharedMemory)
+            {
+                if (info.threadNr != seqNr)
+                {
+                    if (!info.CS)
+                    {
+                        if (sharedMemory[seqNr].direction == info.direction)
+                        {
+                            return true;
+                        }
                         if ((DateTime.Compare(info.timeStamp, sharedMemory[seqNr].timeStamp) < 0)) // t1 is earlier than t2 //
                         {
                             return false;
@@ -209,7 +235,7 @@ namespace Semester_Project
             // function code goes here for a thread //
             int myThreadNr = number;
             while (true) // infinitely execute unil terminated //
-            {   
+            {
                 Thread.Sleep(parentForm.getSliderValue()); // sleeps for ms value indicated on slider (100ms - 500ms range) //
                 if (sharedMemoryLock.WaitOne())
                 {
@@ -294,15 +320,76 @@ namespace Semester_Project
                 Thread.Sleep(parentForm.getSliderValue()); // sleeps for ms value indicated on slider (100ms - 500ms range) //
                 if (sharedMemoryLock.WaitOne())
                 {
-                    // Have critical section to shared memory, set shared memory for bridge lock, then release Mutex and give other threads opportunity to respond //
-                    sharedMemory[myThreadNr].request = true;
-                    sharedMemory[myThreadNr].timeStamp = DateTime.Now;
-                    sharedMemoryLock.ReleaseMutex();
+                    if (!sharedMemory[myThreadNr].request)
+                    {
+                        // Have critical section to shared memory, set shared memory for bridge lock, then release Mutex and give other threads opportunity to respond //
+                        sharedMemory[myThreadNr].request = true;
+                        sharedMemory[myThreadNr].timeStamp = DateTime.Now;
+                        sharedMemoryLock.ReleaseMutex();
+                    }
+                    else
+                    {
+                        sharedMemoryLock.ReleaseMutex();
+                    }
+                }
+                // only needed if entering the bridge //
+                bool result = false;
+                string direction = string.Empty;
+                // ^^ only needed if entering the bridge //
 
+                if (sharedMemoryLock.WaitOne())
+                {
+                    result = enterBridgeMulti(myThreadNr);
+                    if (result)
+                    {
+                        sharedMemory[myThreadNr].CS = true;
+                        sharedMemory[myThreadNr].request = false;
+                        direction = sharedMemory[myThreadNr].direction;
+                    }
+                    sharedMemoryLock.ReleaseMutex();
                 }
 
+                // go onto the bridge if true //
+                if (result)
+                {
+                    switch (direction)
+                    {
+                        case "L":
+                            Color col = parentForm.rShift();
+                            parentForm.iMiddle(col);
+
+                            Thread.Sleep(parentForm.getSliderValue());
+
+                            Color colT = parentForm.rMiddle();
+                            parentForm.lInsert(colT);
+
+                            if (sharedMemoryLock.WaitOne())
+                            {
+                                sharedMemory[myThreadNr].CS = false;
+                                sharedMemory[myThreadNr].direction = "R";
+                                sharedMemoryLock.ReleaseMutex();
+                            }
+
+                            break;
+                        case "R":
+                            Color col2 = parentForm.lShift();
+                            parentForm.iMiddle(col2);
+
+                            Thread.Sleep(parentForm.getSliderValue());
+
+                            Color colT2 = parentForm.rMiddle();
+                            parentForm.rInsert(colT2);
+
+                            if (sharedMemoryLock.WaitOne())
+                            {
+                                sharedMemory[myThreadNr].CS = false;
+                                sharedMemory[myThreadNr].direction = "L";
+                                sharedMemoryLock.ReleaseMutex();
+                            }
+                            break;
+                    }
+                }
             }
         }
-        
     }
 }
