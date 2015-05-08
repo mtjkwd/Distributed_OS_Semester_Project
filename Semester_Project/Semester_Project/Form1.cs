@@ -39,16 +39,25 @@ namespace Semester_Project
                 if (currentHandler != null)
                 {
                     currentHandler.resetGUI();
+                    currentHandler = new MutexHandler(false, this);
+
                 }
-                currentHandler = new MutexHandler(true, this);
+                else
+                {
+                    currentHandler = new MutexHandler(true, this);
+                }
             }
             else if (ModeSelect.Text == "Mode 2")
             {
                 if (currentHandler != null)
                 {
                     currentHandler.resetGUI();
+                    currentHandler = new MutexHandler(true, this);
                 }
-                currentHandler = new MutexHandler(false, this);
+                else
+                {
+                    currentHandler = new MutexHandler(false, this);
+                }
             }
         }
         

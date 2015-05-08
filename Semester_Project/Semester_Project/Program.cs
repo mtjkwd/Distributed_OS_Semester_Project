@@ -50,6 +50,7 @@ namespace Semester_Project
         private Thread[] workerThreads = new Thread[4];
         private List<BridgeInfo> sharedMemory = new List<BridgeInfo>(); // Shared memory between the processes to help them decide when to enter the bridge //
         Mutex sharedMemoryLock = new Mutex(false, "sharedMemoryLock");
+        bool endIt = false;
 
 
         // class constructor //
@@ -184,20 +185,26 @@ namespace Semester_Project
         // class functions
         public void resetGUI() // public for testing, should set back to private when finished. //
         {
+            endIt = true;
+            Thread.Sleep(500);
+
             foreach (string item in lHandles)
             {
                 TextBox itemBox = parentForm.Controls[item.ToString()] as TextBox;
                 itemBox.Text = string.Empty;
+                itemBox.BackColor = Color.White;
             }
             foreach (string item in mHandles)
             {
                 TextBox itemBox = parentForm.Controls[item.ToString()] as TextBox;
                 itemBox.Text = string.Empty;
+                itemBox.BackColor = Color.White;
             }
             foreach (string item in rHandles)
             {
                 TextBox itemBox = parentForm.Controls[item.ToString()] as TextBox;
                 itemBox.Text = string.Empty;
+                itemBox.BackColor = Color.White;
             }
             // Resets the GUI interface to run another instance when options change via user GUI input //
         }
@@ -235,6 +242,8 @@ namespace Semester_Project
 
         void Richart_Thread(int number)
         {
+            if (endIt)
+                return;
             // function code goes here for a thread //
             int myThreadNr = number;
             while (true) // infinitely execute unil terminated //
@@ -316,6 +325,8 @@ namespace Semester_Project
 
         void Multi_Thread(int number)
         {
+            if (endIt)
+                return;
             // function code goes here for a thread //
             int myThreadNr = number;
             while (true) // infinitely execute unil terminated //
